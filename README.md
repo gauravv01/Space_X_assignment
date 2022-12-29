@@ -5,7 +5,7 @@ Clone the github repository
 
 After cloning the repo,run
 
-`cd spacex-app`
+`cd Spacex-assignment`
 
 `npm install`
 
