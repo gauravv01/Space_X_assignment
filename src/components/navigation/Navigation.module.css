@@ -1,5 +1,4 @@
 .navbar{
-    height: 6rem;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -11,6 +10,32 @@
     color: white;
     padding: 0.5rem;
 
+}
+
+.outer_div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.hamburger{
+    border: 1px solid gray;
+    width: 3rem;
+    height: 2.7rem;
+    border-radius: 1rem;
+    padding: 0.5rem;
+}
+
+.span{
+    width: 2rem;
+    height: 0.5rem;
+    background-color: white;
+    border: 1px solid gray;
+    display: block;
+    margin: 1px 0;
+    border-radius: 2px;
 }
 
 .options{
@@ -36,10 +61,59 @@ button:hover{
     border: none;
 }
 
+@media(max-width:640px){
+    .options{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    button{
+        border: none;
+        font-size: 1rem;
+        padding-left: 0;
+        padding-bottom: 0;
+        margin: 0;
+    }
+    .navbar{
+        overflow-y: visible;
+        align-items: initial;
+    }
+    .outer_div{
+        flex-direction: column;
+        align-items: inherit;
+    }
+    button:hover{
+        background-color: inherit;
+        color: white;
+    }
+}
+
 @media(max-width:450px){
     .navbar{
     font-size: 1rem;
     font-weight: 600;
+    }
+    .hamburger{
+        border: 1px solid gray;
+        width: 2.15rem;
+        height: 2.2rem;
+        border-radius: 0.75rem;
+        padding: 0.25rem;
+    }
+    .span{
+        width: 1.5rem;
+        height: 0.4rem;
+        background-color: white;
+        border: 1px solid gray;
+        display: block;
+        margin: 1px 0;
+        border-radius: 2px;
+    }
+    button{
+        font-size: 0.75rem;
+    }
+    button:hover{
+        background-color: inherit;
+        color: white;
     }
    
 }

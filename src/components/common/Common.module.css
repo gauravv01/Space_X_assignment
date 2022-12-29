@@ -33,6 +33,11 @@
     padding-left: 0.5rem;
 }
 
+.button_parent{
+    display: flex;
+    flex-direction: row;
+}
+
 .button{
     background-color: rgb(59, 130, 246);
     color: white;
@@ -58,5 +63,11 @@
 @media(max-width:450px){
     .td{
         font-size: 0.6rem;
+    }
+    .button{
+        font-size: 0.6rem;
+    }
+    .span{
+        margin: 0 0.5rem;
     }
 }
