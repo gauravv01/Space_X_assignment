@@ -1,0 +1,75 @@
+.searchbar{
+    margin: 0.5rem;
+    margin-right:0; 
+}
+
+.th{
+    font-weight: 700;
+    padding: 0.5rem;
+    border-bottom-width:1px;
+    border-left-width:1px ; 
+    border-color:black ;
+    background-color: rgb(85, 85, 85);
+    color: white;
+}
+
+.td{
+    border: 1px solid gray;
+}
+
+.tbody{
+    width: 90%;
+}
+
+.tr{
+    background-color: rgb(243,244,246);
+}
+
+.tr:hover{
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(231 229 228 / var(--tw-bg-opacity)) !important;
+}
+
+.table{
+    width: 100%;
+    border: 1px solid black;
+}
+
+.div_a{
+    margin: 0 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.div_b{
+    margin: 1rem 0;
+    border: 1px solid black;
+    font-size: 12px;
+    /* width: 10rem; */
+    border-radius: 1rem;
+    padding: 0.5rem;
+}
+
+.select{
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    margin-left: 0.5rem;
+}
+
+
+.button{
+    background-color: rgb(59, 130, 246);
+    color: white;
+    font-weight: 700;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+}
+
+.button:hover{
+    background-color: rgb(29,78, 216);
+}
+
+.span{
+    margin: 0 1rem;
+}
