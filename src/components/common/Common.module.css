@@ -24,7 +24,13 @@
 .td{
     border: 1px solid gray;
     text-align: center;
+    font-size: 0.9rem;
     /* padding-left: 1rem; */
+}
+
+.td:nth-child(3){
+    text-align: start;
+    padding-left: 0.5rem;
 }
 
 .button{
@@ -47,4 +53,10 @@
 .span{
     margin: 0 1rem;
     color: black;
+}
+
+@media(max-width:450px){
+    .td{
+        font-size: 0.6rem;
+    }
 }

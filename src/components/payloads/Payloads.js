@@ -56,7 +56,7 @@ const PayloadsTable = () => {
             </select>
           </label>
         </div>
-      <DisplayButton   totalRows={totalRows} />
+      <DisplayButton   totalRows={totalRows} type={constants.PAYLOADS} />
       </div>
     </>
   );

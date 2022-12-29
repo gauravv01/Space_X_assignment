@@ -46,7 +46,7 @@ const DataSlice=createSlice({
               const factor=(state.currentPage-1)*rowsPerpage;
               const newfactor=(state.currentPage)*rowsPerpage;
               state.slicedrows=state.history.slice(factor,newfactor)
-              console.log(state.slicedrows,factor,rowsPerpage)
+              console.log(state.slicedrows)
 
             },
             Givepayload(state,action){

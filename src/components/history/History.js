@@ -57,7 +57,7 @@ const History = () => {
             </select>
           </label>
         </div>
-        <DisplayButton  totalRows={filteredHistory.length}/>
+        <DisplayButton  totalRows={filteredHistory.length} type={constants.HISTORY} />
       </div>
     </>
   );

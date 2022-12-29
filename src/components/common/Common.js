@@ -17,6 +17,19 @@ export const SearchComponent=({search,handleChange})=>{
   </div>
 }
 
+const shortenName=(name)=>{
+  const newName=name.split('');
+  let updatedName;
+  if(newName.length>=80){
+   updatedName=newName.slice(0,100);
+  updatedName.push('...')
+  }
+  else{
+    updatedName=newName;
+  }
+  return updatedName.join('');
+}
+
 const tableRow=(row)=>{
     const {id,title,details,customers,payload_id} = row || {};
     return (
@@ -26,7 +39,7 @@ const tableRow=(row)=>{
       >
         <td className={tdstyles}>{id}</td>
         <td className={tdstyles}>{title?title:payload_id}</td>
-        <td className={tdstyles}>{details?details:customers}</td>
+        <td className={tdstyles}>{details?shortenName(details):customers}</td>
       </tr>
     )
 }
@@ -47,13 +60,17 @@ const slicedrow=useSelector(state=>state.DataFetchSlice.slicedrows);
     }
   }
 
-  export const DisplayButton=({totalRows})=>{
+  export const DisplayButton=({totalRows,type})=>{
  const dispatch=useDispatch();
  const data=useSelector(state=>state.DataFetchSlice);
  
  function slicedrow(){
+  if(type===constants.HISTORY){
   dispatch(DataActions.Givehistory(data.RowsPerPage));
+  }
+  else if(type===constants.PAYLOADS){
   dispatch(DataActions.Givepayload(data.RowsPerPage));
+  }
  }
  
  const pageIncrement=()=>{
