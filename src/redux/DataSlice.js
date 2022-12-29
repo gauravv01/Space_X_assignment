@@ -4,7 +4,8 @@ const initialState ={
     history: [],
     payloads: [],
     currentPage: 1,
-    totalPages: 10,
+    RowsPerPage:5,
+    slicedrows:[],
     loading: false,
     error: null,
   }
@@ -17,8 +18,6 @@ const DataSlice=createSlice({
         },
         HistoryFetched(state,action){
         state.history= action.payload;
-        state.currentPage=action.currentPage;
-        state.totalPages= action.totalPages;
         state.loading= false;
         state.error= null;
         },
@@ -33,11 +32,36 @@ const DataSlice=createSlice({
             state.payloads[i]=({...state.payloads[i],id:i+1});
             i++;
            }
-            state.currentPage=action.currentPage;
-            state.totalPages= action.totalPages;
             state.loading= false;
             state.error= null;
             },
+            PageInc(state){
+              state.currentPage=state.currentPage+1
+            },
+            PageDec(state){
+              state.currentPage=state.currentPage-1
+            },
+            Givehistory(state,action){
+              const rowsPerpage=action.payload;
+              const factor=(state.currentPage-1)*rowsPerpage;
+              const newfactor=(state.currentPage)*rowsPerpage;
+              state.slicedrows=state.history.slice(factor,newfactor)
+              console.log(state.slicedrows,factor,rowsPerpage)
+
+            },
+            Givepayload(state,action){
+              const rowsPerpage=action.payload;
+              const factor=(state.currentPage-1)*rowsPerpage;
+              const newfactor=(state.currentPage)*rowsPerpage;
+              state.slicedrows=state.payloads.slice(factor,newfactor)
+            },
+            SetPage(state){
+              state.currentPage=1;
+            },
+            SetRowsPerPage(state,action){
+              state.RowsPerPage=action.payload
+            }
+
       },
 })
 

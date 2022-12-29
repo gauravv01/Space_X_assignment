@@ -38,3 +38,13 @@
 .button:hover{
     background-color: rgb(29,78, 216);
 }
+
+.button:disabled{
+    background-color: gray;
+    color: white;
+}
+
+.span{
+    margin: 0 1rem;
+    color: black;
+}

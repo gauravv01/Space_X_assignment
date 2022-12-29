@@ -4,6 +4,7 @@ import { fetchPayloads } from '../../redux/actions';
 import { SearchComponent,MatchData , DisplayButton } from '../common/Common';
 import constants from '../../data/constants';
 import styles from '../history/History.module.css';
+import { DataActions } from '../../redux/DataSlice';
 
 const PayloadsTable = () => {
   const dispatch = useDispatch();
@@ -16,20 +17,13 @@ const PayloadsTable = () => {
   let filteredPayloads = data.payloads.filter((item) =>
   item.payload_id.toLowerCase().includes(search.toLowerCase()));
 
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const totalRows = filteredPayloads.length;
 
-  const totalRows = data.payloads.length;
-
-  // const handleChangePage = (event, newPage) => {
-  //   setPage(newPage);
-  // };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(event.target.value);
-    setPage(0);
+  const handleChangedata = (event) => {
+    dispatch(DataActions.SetRowsPerPage(event.target.value))
+    dispatch(DataActions.SetPage());
+    dispatch(DataActions.Givepayload(event.target.value))
   };
-
 
   useEffect(() => {
     dispatch(fetchPayloads());
@@ -49,20 +43,20 @@ const PayloadsTable = () => {
             </tr>
           </thead>
           <tbody className={styles.tbody}>
-           { MatchData(data.loading,filteredPayloads,page,rowsPerPage)}
+           { MatchData(data.loading,filteredPayloads,data.RowsPerPage)}
           </tbody>
         </table>
         <div className={styles.div_b}>
           <label>
             {constants.ROWS_PER_PAGE}
-            <select value={rowsPerPage} className={styles.select} onChange={handleChangeRowsPerPage}>
+            <select value={data.RowsPerPage} className={styles.select} onChange={handleChangedata}>
              {constants.OPTIONS.map((no)=>{
               return <option key={no} value={no}>{no}</option>
              })}
             </select>
           </label>
         </div>
-      <DisplayButton setPage={setPage} page={page} totalRows={totalRows} rowsPerPage={rowsPerPage}/>
+      <DisplayButton   totalRows={totalRows} />
       </div>
     </>
   );

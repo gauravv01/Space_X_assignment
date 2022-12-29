@@ -8,6 +8,7 @@ export const fetchHistory = () => {
       const response =await axios.get('/history');
       const data = response.data;
       dispatch(DataActions.HistoryFetched(data));
+      dispatch(DataActions.Givehistory(5))
     } catch (error) {
       dispatch(DataActions.DataError(error));
     }
@@ -23,6 +24,7 @@ export const fetchPayloads = () => {
       const response = await axios.get('/payloads');
       const data =response.data;
       dispatch(DataActions.PayloadFetched(data));
+      dispatch(DataActions.Givepayload(5));
     } catch (error) {
       dispatch(DataActions.DataError(error));
     }

@@ -1,5 +1,7 @@
 import constants from '../../data/constants';
 import styles from './Common.module.css';
+import { DataActions } from '../../redux/DataSlice';
+import { useDispatch,useSelector } from 'react-redux';
 
 const tdstyles=styles.td;
 
@@ -31,11 +33,10 @@ const tableRow=(row)=>{
 
 
 
-export const MatchData=(loading,data,page,rowsPerPage)=>{
-
+export const MatchData=(loading,data)=>{
+const slicedrow=useSelector(state=>state.DataFetchSlice.slicedrows);
     if(!loading && data.length>=1){
-      const data1 = data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
-      return data1.map((row1)=> tableRow(row1));
+      return slicedrow.map((row1)=> tableRow(row1));
     }
     
     else if(loading){
@@ -46,20 +47,36 @@ export const MatchData=(loading,data,page,rowsPerPage)=>{
     }
   }
 
-  export const DisplayButton=({setPage,page,totalRows,rowsPerPage})=>{
+  export const DisplayButton=({totalRows})=>{
+ const dispatch=useDispatch();
+ const data=useSelector(state=>state.DataFetchSlice);
+ 
+ function slicedrow(){
+  dispatch(DataActions.Givehistory(data.RowsPerPage));
+  dispatch(DataActions.Givepayload(data.RowsPerPage));
+ }
+ 
+ const pageIncrement=()=>{
+  dispatch(DataActions.PageInc());
+  slicedrow();
+};
+ const pageDecrement=()=>{
+  dispatch(DataActions.PageDec())
+  slicedrow();
+};
     return  <div>
     <button
       className={styles.button}
-      onClick={() => setPage(page - 1)}
-      disabled={page === 0}
+      onClick={pageDecrement}
+      disabled={data.currentPage<=1}
     >
       {constants.PREVIOUS}
     </button>
-    <span className={styles.span}>{page + 1}</span>
+    <span className={styles.span}>{data.currentPage}</span>
     <button
       className={styles.button}
-      onClick={() => setPage(page + 1)}
-      disabled={page >= totalRows / rowsPerPage - 1}
+      onClick={pageIncrement}
+      disabled={data.currentPage >= Math.ceil(totalRows/data.RowsPerPage)}
     >
       {constants.NEXT}
     </button>
