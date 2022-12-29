@@ -24,11 +24,9 @@ else if(window.innerWidth>'640'){
 
   const homepage = (e) => {
     navigate(constants.HOME_PAGE);
-    setIcon(true)
   };
   const payloadpage = (e) => {
     navigate(constants.PAYLOAD_PAGE);
-    setIcon(true)
   };
 
   return (
