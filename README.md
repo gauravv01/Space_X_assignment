@@ -2,7 +2,6 @@
 
 Clone the github repository
 
-`git clone https://github.com/gangaprasadmohite/spacex-app.git`
 
 After cloning the repo,run
 
